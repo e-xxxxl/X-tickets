@@ -1,27 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Tickets from './Components/Tickets';
 
 function App() {
-  return (
-    <div className="min-h-screen bg-black text-white">
-      <header className="bg-black border-b-4 border-yellow-300 py-6">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
-            <div>
-              <h1 className="text-4xl font-bold text-red-600">X REPUBLIK</h1>
-              <p className="text-yellow-300 text-lg mt-1">
-                A festival that brings together creativity, music, and culture.
-              </p>
-            </div>
-            <div className="mt-4 md:mt-0">
-              <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 transition duration-300">
-                ADMIN PANEL
-              </button>
-            </div>
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check if screen width is less than 768px (typical mobile breakpoint)
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Check on initial render
+    checkIfMobile();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIfMobile);
+
+    // Clean up event listener
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+
+  if (isMobile) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center p-4">
+        <div className="text-center max-w-md">
+          <h1 className="text-3xl font-bold text-red-600 mb-4">X REPUBLIK</h1>
+          <div className="bg-black border-2 border-yellow-300 p-6">
+            <p className="text-yellow-300 text-xl mb-4">
+              Ticket Management System
+            </p>
+            <p className="text-white mb-6">
+              This dashboard is only available on larger screens (tablets, laptops, or desktops) for better usability.
+            </p>
+            <p className="text-gray-400 text-sm">
+              Please switch to a device with a larger screen to access the ticket management features.
+            </p>
+          </div>
+          <div className="mt-8 text-gray-400 text-sm">
+            © 2025 X Republik Festival. All rights reserved.
           </div>
         </div>
-      </header>
-      
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-black text-white">
       <main className="container mx-auto px-4">
         <Tickets/>
       </main>

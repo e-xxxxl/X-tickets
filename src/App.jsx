@@ -1,5 +1,5 @@
 import React from 'react';
-import TicketTable from './Components/Tickettable';
+import Tickettable from './Components/Tickettable';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
       </header>
       
       <main className="container mx-auto px-4">
-        <TicketTable />
+        <Tickettable />
       </main>
       
       <footer className="bg-black border-t border-gray-800 text-white py-6 mt-8">

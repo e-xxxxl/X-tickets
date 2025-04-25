@@ -82,9 +82,9 @@ function Tickets() {
   // Safely format currency values
   const formatCurrency = (amount) => {
     if (amount !== undefined && amount !== null && !isNaN(amount)) {
-      return `$${Number(amount).toFixed(2)}`;
+      return `₦${Number(amount).toFixed(2)}`;
     }
-    return '$0.00';
+    return '₦0.00';
   };
 
   return (
